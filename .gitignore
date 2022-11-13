@@ -1,0 +1,5 @@
+# Django secret key
+Newtspaper/secret.py
+
+*.DS_STORE
+.idea
