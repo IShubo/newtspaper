@@ -15,8 +15,8 @@ def business(request):
     return render(request, 'business.html')
 
 
-def currentEvents(request):
-    return render(request, 'currentEvents.html')
+def general(request):
+    return render(request, 'general.html')
 
 
 def sports(request):
