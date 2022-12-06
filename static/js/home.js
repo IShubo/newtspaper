@@ -16,10 +16,11 @@ var newsArray = [];
 
 // API
 // API KEY: c467c532f88e46ddb2e6b2d6d4545cf5
-const API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5";
+//const API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5";
 
 // CORS Proxy
-const corsAnywhereURL = 'https://cors-anywhere.herokuapp.com/';
+//const corsAnywhereURL = 'https://cors-anywhere.herokuapp.com/';
+
 
 const BUSINESS_NEWS = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=";
 const HEADLINES_NEWS = "https://newsapi.org/v2/top-headlines?country=us&apiKey="
@@ -74,7 +75,7 @@ const fetchBusinessNews = async () => {
         newsArray = genJson.articles;
     } else {
         // Handle errors
-        console.log(response.status + response.statusText);
+        console.log(response.status + " " + response.statusText);
     }
     displayNews();
 }
@@ -87,7 +88,7 @@ const fetchGeneralNews = async () => {
         newsArray = genJson.articles;
     } else {
         // Handle errors
-        console.log(response.status + response.statusText);
+        console.log(response.status + " " + response.statusText);
     }
     displayNews();
 }
@@ -100,7 +101,7 @@ const fetchHeadlines = async () => {
         newsArray = genJson.articles;
     } else {
         // Handle errors
-        console.log(response.status + response.statusText + "Hello, World");
+        console.log(response.status + " " + response.statusText);
     }
     displayNews();
 }
@@ -113,7 +114,7 @@ const fetchScienceNews = async () => {
         newsArray = genJson.articles;
     } else {
         // Handle errors
-        console.log(response.status + response.statusText);
+        console.log(response.status + " " + response.statusText);
     }
     displayNews();
 }
@@ -126,7 +127,7 @@ const fetchSportsNews = async () => {
         newsArray = genJson.articles;
     } else {
         // Handle errors
-        console.log(response.status + response.statusText);
+        console.log(response.status + " " + response.statusText);
     }
     displayNews();
 }
@@ -139,7 +140,7 @@ const fetchTechnologyNews = async () => {
         newsArray = genJson.articles;
     } else {
         // Handle errors
-        console.log(response.status + response.statusText);
+        console.log(response.status + " " + response.statusText);
     }
     displayNews();
 }
@@ -155,7 +156,7 @@ const fetchQueryNews = async () => {
         newsArray = genJson.articles;
     } else {
         // Handle errors
-        console.log(response.status + response.statusText);
+        console.log(response.status + " " + response.statusText);
     }
     displayNews();
 }

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    {% include 'partials/navbar.html' %}
+{% comment %}    {% include 'partials/navbar.html' %}{% endcomment %}
 
     <!-- HOME SCREEN -->
     <!-- Logo -->
@@ -18,8 +18,32 @@
         <div class="row m-3" id="newsType"></div>
         <div class="row me-2 ms-2" id="newsDetails"></div>
     </div>
+    {% for article in articles %}
+        <div>   {{ article.author }}</div>
+        <div>   {{ article.title }}</div>
+
+    {% endfor %}
 
 
+
+
+{% endblock %}
+
+{% block js %}
+
+     <script>
+{% comment %}        const API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5";
+        const corsAnywhereURL = 'https://cors-anywhere.herokuapp.com/';
+
+        $.ajax({
+            url: corsAnywhereURL + `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${API_KEY}`,
+            dataType: 'json',
+            method: 'GET',
+            success: function (data) {
+                console.log(data);
+            }
+        });{% endcomment %}
+    </script>
 {% endblock %}
 
 
