@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import requests
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
@@ -15,6 +17,7 @@ def newtspaper_app(request):
     articles = data['articles']
     context = {'articles': articles}
     return render(request, 'home.html', context)
+
 
 def science(request):
     return render(request, 'science.html')
@@ -38,3 +41,35 @@ def technology(request):
 
 def yourPage(request):
     return render(request, 'yourPage.html')
+
+
+# Register a user
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'register.html', {'form': form})
+
+
+# Log a user in
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'login.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
