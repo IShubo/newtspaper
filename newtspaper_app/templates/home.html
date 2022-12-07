@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-{% include 'partials/navbar.html' %}
+    {% include 'partials/navbar.html' %}
 
     <!-- HOME SCREEN -->
     <!-- Logo -->
@@ -18,11 +18,25 @@
         <div class="row m-3" id="newsType"></div>
         <div class="row me-2 ms-2" id="newsDetails"></div>
     </div>
-    {% for article in articles %}
-        <div>   {{ article.author }}</div>
-        <div>   {{ article.title }}</div>
 
-    {% endfor %}
+    <div class="container">
+        <div class="row row-cols-3">
+            {% for article in articles %}
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ article.urlToImage }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text">{{ article.description }} </p>
+                            <a href="{{ article.url }}" class="btn btn-primary">See Article</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
 
 
 
@@ -31,18 +45,18 @@
 
 {% block js %}
 
-     <script>
-{% comment %}        const API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5";
-        const corsAnywhereURL = 'https://cors-anywhere.herokuapp.com/';
+    <script>
+        {% comment %}        const API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5";
+                const corsAnywhereURL = 'https://cors-anywhere.herokuapp.com/';
 
-        $.ajax({
-            url: corsAnywhereURL + `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${API_KEY}`,
-            dataType: 'json',
-            method: 'GET',
-            success: function (data) {
-                console.log(data);
-            }
-        });{% endcomment %}
+                $.ajax({
+                    url: corsAnywhereURL + `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=${API_KEY}`,
+                    dataType: 'json',
+                    method: 'GET',
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });{% endcomment %}
     </script>
 {% endblock %}
 
