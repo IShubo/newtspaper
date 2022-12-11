@@ -1,14 +1,12 @@
-
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow">
     <div class="container-fluid">
-        <a style="color: orange" class="navbar-brand nav-link active" href="/newtspaper_app/home">Home</a>
+        <a style="color: orange" class="navbar-brand nav-link active" href="/newtspaper_app/home"><i
+                class="bi bi-house-door"></i></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a style="color: orange" class="navbar-brand nav-link active" href="your-page">Your page</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,27 +20,49 @@
                         Topics
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/newtspaper_app/science" id="science" aria-current="true">Science</a></li>
-                        <li><a class="dropdown-item" href="/newtspaper_app/business" id="business" aria-current="true">Business</a></li>
-                        <li><a class="dropdown-item" href="/newtspaper_app/technology" id="technology" aria-current="true">Technology</a></li>
-                        <li><a class="dropdown-item" href="/newtspaper_app/sports" id="sports" aria-current="true">Sports</a></li>
-                        <li><a class="dropdown-item" href="/newtspaper_app/general" id="general" aria-current="true">Current events</a></li>
+                        <li><a class="dropdown-item" href="/newtspaper_app/science" id="science" aria-current="true">Science</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/newtspaper_app/business" id="business" aria-current="true">Business</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/newtspaper_app/technology" id="technology"
+                               aria-current="true">Technology</a></li>
+                        <li><a class="dropdown-item" href="/newtspaper_app/sports" id="sports" aria-current="true">Sports</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/newtspaper_app/general" id="general" aria-current="true">Entertainment</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="text" id="newsQuery" placeholder="Search" aria-label="Search">
-                    <button style="color: orange" class="btn btn-outline" type="submit" id="search">Search</button>
+                <button style="color: orange" class="btn btn-outline" type="submit" id="search">Search</button>
             </form>
-             <a href="{% url 'login' %}">
-                <button style="color: orange" class="btn btn-outline" type="submit">Sign in</button>
-                </a>
-                <a href="{% url 'register' %}">
-                <button style="color: orange" class="btn btn-outline" type="submit">Register</button>
-                </a>
-            <a href="{% url 'logout' %}">
-                <button style="color: orange" class="btn btn-outline" type="submit">Logout</button>
-                </a>
+
+            <div class="dropdown">
+                <button style="color: orange" class="btn btn btn-outline dropdown-toggle" type="button"
+                        id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Account
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'your-page' %}">
+                            <button style="color: orange" class="btn btn-outline" type="submit">Your page</button>
+                        </a></li>
+                        <li><a href="{% url 'logout' %}">
+                            <button style="color: orange" class="btn btn-outline" type="submit">Logout</button>
+                        </a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">
+                            <button style="color: orange" class="btn btn-outline" type="submit">Sign in</button>
+                        </a></li>
+                        <li><a href="{% url 'register' %}">
+                            <button style="color: orange" class="btn btn-outline" type="submit">Register</button>
+                        </a></li>
+
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

@@ -20,23 +20,53 @@ def newtspaper_app(request):
 
 
 def science(request):
-    return render(request, 'science.html')
+    API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5"
+    url = f'https://newsapi.org/v2/top-headlines?country=us&category=science&apiKey={API_KEY}'
+    response = requests.get(url)
+    data = response.json()
+    articles = data['articles']
+    context = {'articles': articles}
+    return render(request, 'science.html', context)
 
 
 def business(request):
-    return render(request, 'business.html')
+    API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5"
+    url = f'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={API_KEY}'
+    response = requests.get(url)
+    data = response.json()
+    articles = data['articles']
+    context = {'articles': articles}
+    return render(request, 'business.html', context)
 
 
 def general(request):
-    return render(request, 'general.html')
+    API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5"
+    url = f'https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey={API_KEY}'
+    response = requests.get(url)
+    data = response.json()
+    articles = data['articles']
+    context = {'articles': articles}
+    return render(request, 'general.html', context)
 
 
 def sports(request):
-    return render(request, 'sports.html')
+    API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5"
+    url = f'https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey={API_KEY}'
+    response = requests.get(url)
+    data = response.json()
+    articles = data['articles']
+    context = {'articles': articles}
+    return render(request, 'sports.html', context)
 
 
 def technology(request):
-    return render(request, 'technology.html')
+    API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5"
+    url = f'https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey={API_KEY}'
+    response = requests.get(url)
+    data = response.json()
+    articles = data['articles']
+    context = {'articles': articles}
+    return render(request, 'technology.html', context)
 
 
 def yourPage(request):
@@ -73,3 +103,19 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+
+def search(request):
+    #obj = ClassModel.get_by_id(newsQuery)
+    API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5"
+    url = f'https://newsapi.org/v2/everything?q="+obj+"{API_KEY}'
+    response = requests.get(url)
+    data = response.json()
+    articles = data['articles']
+    context = {'articles': articles}
+    return render(request, 'home.html', context)
+
+def search(request):
+    search_term = request.GET.get('search-term') or ''
+    tasks = Todo.objects.filter(task_name=search_term)
+    return render(request, 'todoList_app/index.html', {'tasks': tasks})

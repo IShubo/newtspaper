@@ -20,4 +20,22 @@
         <div class="row me-2 ms-2" id="newsDetails"></div>
     </div>
 
+
+    <div class="container">
+        <div class="row row-cols-3">
+            {% for article in articles %}
+                <div class="col p-2">
+                    <div style="height: 100%" class="card border-warning">
+                        <img class="card-img-top" src="{{ article.urlToImage }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <a href="{{ article.url }}" class="btn btn-warning">See Article</a>
+                            <button class="btn btn-warning"><i class="bi bi-bookmark-star"></i></button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}

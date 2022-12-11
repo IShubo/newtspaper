@@ -10,6 +10,7 @@ urlpatterns = [
     path('sports', views.sports, name='sports'),
     path('technology', views.technology, name='technology'),
     path('your-page', views.yourPage, name='your-page'),
+    path('search', views.newtspaper_app, name='search'),
 
 
     path('login/', views.login_view, name='login'),

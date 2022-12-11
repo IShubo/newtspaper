@@ -217,3 +217,4 @@ function displayNews() {
         newsDetails.appendChild(col);
     });
 }
+
