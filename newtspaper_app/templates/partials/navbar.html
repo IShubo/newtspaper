@@ -33,8 +33,9 @@
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="text" id="newsQuery" placeholder="Search" aria-label="Search">
+            <form action="{% url 'searchResults' %}" method="post" class="d-flex" role="search">
+                {% csrf_token %}
+                <input class="form-control me-2" type="text" id="newsQuery" placeholder="Search" aria-label="Search" name="search_term">
                 <button style="color: orange" class="btn btn-outline" type="submit" id="search">Search</button>
             </form>
 
@@ -52,6 +53,10 @@
                         <li><a href="{% url 'logout' %}">
                             <button style="color: orange" class="btn btn-outline" type="submit">Logout</button>
                         </a></li>
+{#                        Favorite section#}
+{#                        <li><a href="{% url 'favoriteList' %}">#}
+{#                            <button style="color: orange" class="btn btn-outline" type="submit">Favorites</button>#}
+{#                        </a></li>#}
                     {% else %}
                         <li><a href="{% url 'login' %}">
                             <button style="color: orange" class="btn btn-outline" type="submit">Sign in</button>

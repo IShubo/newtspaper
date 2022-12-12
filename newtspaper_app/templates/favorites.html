@@ -1,0 +1,46 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}
+    Favorites
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+    <!-- Logo -->
+    <div class="text-center m-5">
+        <h1 style="color: orange">Favorites</h1>
+    </div>
+
+    <!-- News Articles -->
+    <div>
+        <div class="row m-3" id="newsType"></div>
+        <div class="row me-2 ms-2" id="newsDetails"></div>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-3">
+            {% for article in new %}
+                <div class="col p-2">
+                    <div style="height: 100%" class="card border-warning">
+                        <img class="card-img-top" src="{{ article.urlToImage }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text">{{ article.description }} </p>
+                            <a href="{{ article.url }}" class="btn btn-warning">See Article</a>
+                            <button class="btn btn-warning"><i class="bi bi-bookmark-star"></i></button>
+
+                            <!-- Favorite -->
+                            <div id="favourite-section"><a href="{% url 'favourite_add' article .id %}"
+                                        class="btn btn-outline-primary">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

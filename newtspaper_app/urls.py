@@ -1,3 +1,4 @@
+from django.template.defaulttags import url
 from django.urls import path
 from . import views
 
@@ -10,7 +11,9 @@ urlpatterns = [
     path('sports', views.sports, name='sports'),
     path('technology', views.technology, name='technology'),
     path('your-page', views.yourPage, name='your-page'),
-    path('search', views.newtspaper_app, name='search'),
+    path('searchResults/', views.searchResults, name='searchResults'),
+    # path('fav/<int:id>', views.favorite_add, name='favoriteAdd'),
+    # path('fav/favList', views.favorite_list, name='favoriteList'),
 
 
     path('login/', views.login_view, name='login'),

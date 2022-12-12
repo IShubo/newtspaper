@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 import requests
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from .models import Articles
 
 
 # Create your views here.
@@ -104,18 +106,59 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+# def search(request):
+#     search_term = request.GET.get('search-term') or ''
+#     tasks = Todo.objects.filter(task_name=search_term)
+#     return render(request, 'todoList_app/index.html', {'tasks': tasks})
 
-def search(request):
-    #obj = ClassModel.get_by_id(newsQuery)
-    API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5"
-    url = f'https://newsapi.org/v2/everything?q="+obj+"{API_KEY}'
-    response = requests.get(url)
-    data = response.json()
-    articles = data['articles']
-    context = {'articles': articles}
-    return render(request, 'home.html', context)
+def searchResults(request):
+    # if the request method is a post
+    if request.method == 'POST':
+        # get the search term and location
+        search_term = request.POST.get('search_term')
+        #location = request.POST.get('location')
 
-def search(request):
-    search_term = request.GET.get('search-term') or ''
-    tasks = Todo.objects.filter(task_name=search_term)
-    return render(request, 'todoList_app/index.html', {'tasks': tasks})
+        # You must enter your own API_KEY below
+        API_KEY = "c467c532f88e46ddb2e6b2d6d4545cf5"
+
+        # this is the url to access the endpoint yelp along with 2 parameters search term and location
+        # more details can be found here https://www.yelp.com/developers/documentation/v3/business_search
+        url = f'https://newsapi.org/v2/everything?q=+{search_term}+&apiKey={API_KEY}'
+        print(url)
+        # headers = {
+        #     "Authorization": f"Bearer {API_KEY}"
+        # }
+
+    #     response = requests.get(url, headers=headers)
+    #     data = response.json()
+    #     total_results = data['total']
+    #     businesses = data['businesses']
+    #     return render(request, 'yelp/index-v2.html', {'businesses': businesses, 'total_results': total_results})
+    # else:
+    #     return render(request, 'yelp/index-v2.html')
+
+        response = requests.get(url)
+        data = response.json()
+        articles = data['articles']
+        #total_results = data['total']  'total_results': total_results
+        context = {'articles': articles}
+        return render(request, 'searchResults.html', context)
+    else:
+        return render(request, 'home.html')
+
+
+# @login_required
+# def favorite_add(request, id):
+#     article = get_object_or_404(Articles, id=id)
+#     if article.favorites.filter(id=request.user.id).exists():
+#         article.favorites.remove(request.user)
+#     else:
+#         article.favorites.add(request.user)
+#     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+# @login_required
+# def favorite_list(request):
+#     new = Articles.newmanager.filter(favorites=request.user)
+#     context = {'new': new}
+#     return render(request, 'favorites.html', context)
