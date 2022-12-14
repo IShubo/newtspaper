@@ -10,13 +10,46 @@
     <!-- *HOME SCREEN* -->
     <!-- Logo -->
     <div class="text-center m-5">
-        <h1 style="color: orange">Your Feed</h1>
+        <h1 style="color: orange">Your Page</h1>
     </div>
 
-    <!-- News Articles -->
-    <div>
-        <div class="row m-3" id="newsType"></div>
-        <div class="row me-2 ms-2" id="newsDetails"></div>
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for foo in profile %}
+                <div class="form-group my-3">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username"
+                           aria-describedby="usernameHelp" name="username"
+                           placeholder="Enter Username">
+                </div>
+                <div class="form-group my-3">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name"
+                           aria-describedby="firstNameHelp" name="first_name"
+                           placeholder="Enter Your First Name">
+                </div>
+                <div class="form-group my-3">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="last_name"
+                           aria-describedby="lastNameHelp" name="last_name"
+                           placeholder="Enter Your Last Name">
+                </div>
+                <div class="form-group my-3">
+                    <label for="bio">Bio</label>
+                    <textarea class="form-control" id="bio" rows="3" name="bio">{{ foo.bio }}</textarea>
+                </div>
+
+            {% endfor %}
+            <a href="editYourPage.html">{# {% url 'edit-your-page' id %} #}
+                <button class="btn btn-secondary" type="submit" name="updateProfile">Update</button>
+            </a>
+        </form>
     </div>
+
+
+
+
+
 
 {% endblock %}

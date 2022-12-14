@@ -1,0 +1,22 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}
+    Your Page
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/navbar.html' %}
+
+    <!-- *HOME SCREEN* -->
+    <!-- Logo -->
+    <div class="text-center m-5">
+        <h1 style="color: orange">Your Page</h1>
+    </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+    </form>
+
+
+{% endblock %}

@@ -4,7 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 import requests
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-from .models import Articles
+from .models import Articles, Profile
+from .forms import ProfileForm
 
 
 # Create your views here.
@@ -71,8 +72,37 @@ def technology(request):
     return render(request, 'technology.html', context)
 
 
+@login_required()
 def yourPage(request):
-    return render(request, 'yourPage.html')
+    profile = Profile.objects.all()
+    context = {'profile': profile}
+    return render(request, 'yourPage.html', context)
+
+
+@login_required()
+def edit_your_page(request, id):
+    profile = Profile.objects.get(id=id)
+    form = ProfileForm(request.POST or None, instance=profile)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return render(request, 'yourPage.html')
+
+    context = {'form': form}
+    return render(request, 'editYourPage.html', context)
+
+
+@login_required()
+def delete_your_page(request, id):
+    profile = Profile.objects.filter(id=id)
+    if request.method == 'POST':
+        profile.update(data=None)
+        return redirect('your-page')
+
+    context = {'profile': profile}
+
+    return render(request, 'yourPage.html', context)
 
 
 # Register a user
