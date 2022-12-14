@@ -2,11 +2,19 @@
 
 {% block body %}
 
-    <h1>Login</h1>
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-    </form>
-
+    <div class="container text-center">
+        <br>
+        <br>
+        <br>
+        <div>
+        <h1 style="color: orange">Newtspaper</h1>
+        <br>
+        <h5>Log into your Newtspaper account</h5>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="shadow border-dark btn btn-warning" type="submit" value="Login">
+        </form>
+</div>
+    </div>
 {% endblock %}

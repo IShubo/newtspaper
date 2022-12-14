@@ -1,13 +1,13 @@
 {% extends 'partials/base.html' %}
 
 {% block body %}
-
-    <h1>Register</h1>
+<div class="container text-center">
+    <h1 style="color: orange">Register</h1>
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Register">
+        {{ form.as_div }}
+        <input class="shadow border-dark btn btn-warning" type="submit" value="Register">
 
     </form>
-
+</div>
 {% endblock %}
